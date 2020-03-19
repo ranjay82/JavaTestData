@@ -5,31 +5,28 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                 sh 'mvn clean'
-                // withMaven(maven : 'maven_3_6_3') {
-                //     sh 'mvn clean compile'
-                // }
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn clean compile'
+                }
             }
         }
 
-        // stage ('Testing Stage') {
+        stage ('Testing Stage') {
 
-        //     steps {
-        //         sh 'mvn test'
-        //         // withMaven(maven : 'maven_3_6_3') {
-        //         //     sh 'mvn test'
-        //         // }
-        //     }
-        // }
+            steps {
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn test'
+                }
+            }
+        }
 
 
-        // stage ('Deployment Stage') {
-        //     steps {
-        //          sh 'mvn deploy'
-        //         // withMaven(maven : 'maven_3_6_3') {
-        //         //     sh 'mvn deploy'
-        //         // }
-        //     }
-        // }
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3_6_3') {
+                    bat 'mvn deploy'
+                }
+            }
+        }
     }
 }
